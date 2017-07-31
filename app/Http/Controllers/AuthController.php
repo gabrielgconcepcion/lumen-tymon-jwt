@@ -24,6 +24,7 @@ class AuthController extends Controller{
 		}catch(\Tymon\JWTAuth\Exceptions\JWTException $e){
 			return response()->json(['token_absent'=>$e->getMessage()],500);
 		}
-		return response()->json(compact('token'));
+		$user = $this->jwt->user();
+		return response()->json(compact('token','user'));
 	}
 }
